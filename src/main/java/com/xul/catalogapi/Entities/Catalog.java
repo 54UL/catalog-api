@@ -23,5 +23,5 @@ public class Catalog
 
     @NotNull
     @OneToMany(mappedBy = "Catalog", cascade = CascadeType.ALL)
-    private List<CatalogItem> employees = new ArrayList<>();
+    private List<CatalogItem> items = new ArrayList<>();
 }
