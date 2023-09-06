@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xul.catalogapi.Entities.CatalogItem;
+import com.xul.catalogapi.Entities.Catalog;
 import com.xul.catalogapi.Services.CatalogService;
 
 import jakarta.validation.Valid;
@@ -23,12 +23,12 @@ public class CatalogController
     private CatalogService catalogService;
 
     @GetMapping
-    public List<CatalogItem> getAllCatalogs(){
+    public List<Catalog> getAllCatalogs(){
         return catalogService.getAll();
     }
 
     @PostMapping
-    public ResponseEntity<?> saveCatalog(@Valid @RequestBody CatalogItem item){
+    public ResponseEntity<?> saveCatalog(@Valid @RequestBody Catalog item){
         try {
             return ResponseEntity.ok(catalogService.save(item));
         } catch (Exception e) {

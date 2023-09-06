@@ -15,13 +15,45 @@ import jakarta.validation.constraints.NotNull;
 public class Catalog 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @NotNull
     private String name;
 
     @NotNull
-    @OneToMany(mappedBy = "Catalog", cascade = CascadeType.ALL)
-    private List<CatalogItem> items = new ArrayList<>();
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CatalogItem> items = new ArrayList<CatalogItem>();
+
+    public Catalog() {
+
+    }
+
+    public Catalog(@NotNull String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<CatalogItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<CatalogItem> items) {
+        this.items = items;
+    }
 }

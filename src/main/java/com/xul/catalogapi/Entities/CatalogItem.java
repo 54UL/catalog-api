@@ -1,5 +1,7 @@
 package com.xul.catalogapi.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,20 +14,38 @@ import jakarta.validation.constraints.NotNull;
 public class CatalogItem 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        
+
     @NotNull
     private String data;
 
     @ManyToOne
     @JoinColumn(name = "catalog_id")
+    @JsonIgnore
     private Catalog parent;
+        
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getData() {
         return data;
     }
+
     public void setData(String value) {
         data = value;
+    }
+
+    public Catalog getParent() {
+        return parent;
+    }
+    
+    public void setParent(Catalog parent) {
+        this.parent = parent;
     }
 }
