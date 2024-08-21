@@ -24,7 +24,16 @@ public class CatalogItem
     @JoinColumn(name = "catalog_id")
     @JsonIgnore
     private Catalog parent;
-        
+
+    public CatalogItem() {
+
+    }
+
+    public CatalogItem(Catalog parent, String data) {
+        this.parent = parent;
+        this.data = data;
+    }
+
     public Long getId() {
         return id;
     }

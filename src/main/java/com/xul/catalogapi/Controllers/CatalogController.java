@@ -2,6 +2,7 @@ package com.xul.catalogapi.Controllers;
 
 import java.util.List;
 
+import com.xul.catalogapi.Components.AppState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,9 @@ public class CatalogController
     @Autowired
     private CatalogService catalogService;
 
+    @Autowired
+    private AppState appState;
+
     @GetMapping
     public List<Catalog> getAllCatalogs(){
         return catalogService.getAll();
@@ -30,6 +34,7 @@ public class CatalogController
     @PostMapping
     public ResponseEntity<?> saveCatalog(@Valid @RequestBody Catalog item){
         try {
+            appState.incrementRequestCountBy(1);
             return ResponseEntity.ok(catalogService.save(item));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(String.format("Invalid body e: %s", e.getMessage()));

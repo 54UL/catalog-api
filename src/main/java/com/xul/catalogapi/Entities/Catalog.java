@@ -21,7 +21,7 @@ public class Catalog
     @NotNull
     private String name;
 
-    @NotNull
+//    @NotNull
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CatalogItem> items = new ArrayList<CatalogItem>();
 

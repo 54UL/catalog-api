@@ -32,5 +32,13 @@ public class CatalogService {
     
         catalogItemRepository.saveAll(repoItems); // Save CatalogItems
         return newCatalog;
-    }    
+    }
+
+    public Catalog findByName(String name) {
+        return catalogRepository.findByName(name);
+    }
+
+    public List<Catalog> basicSearch(String search) {
+        return catalogRepository.basicSearch(search);
+    }
 }
